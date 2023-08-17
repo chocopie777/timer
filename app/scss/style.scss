@@ -2,4 +2,198 @@
 @import "../css/reset";
 @import "../scss/fonts";
 
+.timer__inner {
+  padding: 20px 20px 50px;
+
+}
+
+.main {
+  height: 100vh;
+  position: relative;
+}
+
+.timer {
+  border-radius: 4px;
+  background: #F9F9F9;
+}
+
+.container {
+  max-width: 461px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.timer-indicator {
+  height: 8px;
+  border-radius: 0 0 4px 4px;
+  background: #FD6259;
+}
+
+.timer__title {
+  text-align: center;
+  color: #000;
+  font-family: RobotoMono-Regular;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.timer__body {
+  margin-top: 35px;
+}
+
+.timer__label {
+  display: flex;
+  flex-direction: column;
+
+  & + .timer__label {
+    margin-left: 30px;
+  }
+
+  & span {
+    margin-top: 12px;
+    text-align: center;
+    color: #000;
+    font-family: RobotoMono-Regular;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.timer__items {
+  display: flex;
+}
+
+.timer__inp {
+  border-radius: 4px;
+  border: 1px solid #DBDBDB;
+  background: #FFF;
+  width: 100%;
+  padding: 0;
+  color: #000;
+  font-family: RobotoMono-Regular;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 0 27px;
+}
+
+.timer__footer {
+  margin-top: 44px;
+}
+
+.timer__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer__btn {
+  cursor: pointer;
+  width: 100%;
+  padding: 8px 31px;
+  font-family: RobotoMono-Regular;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 3px;
+
+  & + .timer__btn {
+    margin-left: 15px;
+  }
+
+  &--primary {
+    border: 1px solid #03AE85;
+    background: #03AE85;
+    color: #FFF;
+  }
+
+  &--default {
+    border: 1px solid #D1D1D1;
+    background: rgba(234, 234, 234, 0.00);
+    color: #323232;
+  }
+
+  &--danger {
+    border: 1px solid #FD6259;
+    background: #FD6259;
+    color: #FFF;
+  }
+}
+
+.git-hub-link {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background: #E9E9E9;
+}
+
+.theme-btn {
+  margin-left: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: #E9E9E9;
+}
+
+.head-btns {
+  position: absolute;
+  top: 22px;
+  right: 36px;
+  display: flex;
+}
+
+.theme-dark {
+  &.main {
+    background: #01131E;
+  }
+
+  & .timer {
+    background: #011C2C;
+  }
+
+  & .timer__label span {
+    color: #FFF;
+  }
+
+  & .timer__btn--primary, .timer__btn--default, .timer__btn--danger {
+    color: #FFF;
+  }
+  & .timer__title {
+    color: #FFF;
+  }
+  & .timer__inp {
+    background: #011C2C;
+    color: #FFF;
+  }
+  & .theme-btn, .git-hub-link {
+    background: #00273F;
+  }
+  & .git-hub-link path, .theme-btn path {
+    stroke: #DCF2FF;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 @import "../scss/media_queries";
