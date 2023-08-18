@@ -30,8 +30,21 @@ secInp.oninput = function () {
     this.value = this.value.substring(0, 2);
 }
 
+if(JSON.parse(localStorage.getItem('dark-theme')) === true) {
+    document.querySelector('.main').classList.add('theme-dark');
+}
+
 themeBtn.addEventListener('click', (event) => {
-    document.querySelector('.main').classList.toggle('theme-dark');
+    if (localStorage.getItem('dark-theme') === null) {
+        localStorage.setItem('dark-theme', JSON.stringify(false));
+    }
+    if (JSON.parse(localStorage.getItem('dark-theme')) === false) {
+        document.querySelector('.main').classList.add('theme-dark');
+        localStorage.setItem('dark-theme', JSON.stringify(true));
+    } else {
+        document.querySelector('.main').classList.remove('theme-dark');
+        localStorage.setItem('dark-theme', JSON.stringify(false));
+    }
 });
 
 startBtn.addEventListener('click', (event) => {
