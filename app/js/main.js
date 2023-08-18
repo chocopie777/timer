@@ -51,9 +51,7 @@ startBtn.addEventListener('click', (event) => {
     if ((hourInp.value === '' || parseInt(hourInp.value) === 0)
         && (minInp.value === '' || parseInt(minInp.value) === 0)
         && (secInp.value === '' || parseInt(secInp.value) === 0)) {
-        hourInp.value = '';
-        minInp.value = '';
-        secInp.value = '';
+        clearingFields();
         new Noty({
             theme: 'metroui',
             type: 'error',
@@ -67,9 +65,7 @@ startBtn.addEventListener('click', (event) => {
 
     if ((hourInp.value < 0 || hourInp.value > 99) || (minInp.value < 0 || minInp.value > 59)
         || (secInp.value < 0 || secInp.value > 59)) {
-        hourInp.value = '';
-        minInp.value = '';
-        secInp.value = '';
+        clearingFields();
         let text = '';
         if (hourInp.value < 0 || hourInp.value > 99) {
             text = 'Значение "Hours" должно быть меньше или равно 99';
@@ -104,8 +100,13 @@ startBtn.addEventListener('click', (event) => {
 
     document.querySelector('.timer-indicator').setAttribute('class', 'timer-indicator timer-indicator--start');
 
+    lengthCheck();
+
+    displayTime();
+
     timerId = setInterval(timer, 1000);
 });
+
 pauseBtn.addEventListener('click', (event) => {
     clearInterval(timerId);
 
@@ -121,32 +122,12 @@ pauseBtn.addEventListener('click', (event) => {
 });
 resetBtn.addEventListener('click', (event) => {
     document.querySelector('.timer-indicator').setAttribute('class', 'timer-indicator');
-    clearInterval(timerId);
-    hourInp.value = '';
-    minInp.value = '';
-    secInp.value = '';
     total_time = 0;
-    startBtn.disabled = false;
-    hourInp.disabled = false;
-    minInp.disabled = false;
-    secInp.disabled = false;
-    pauseBtn.disabled = true;
-    resetBtn.disabled = true;
+    preparingToTurnOffTheTimer();
     audio.play();
 });
 
-function displayTime() {
-    hourInp.value = hours;
-    minInp.value = minutes;
-    secInp.value = seconds;
-}
-
-function addZero(value) {
-    return '0' + value;
-}
-
 function timer() {
-    console.log(timerId);
     total_time -= 1;
     if (total_time > 0) {
         let temp = total_time
@@ -159,29 +140,51 @@ function timer() {
 
         seconds = temp;
 
-        if (String(hours).length < 2) {
-            hours = addZero(hours);
-        }
-        if (String(minutes).length < 2) {
-            minutes = addZero(minutes);
-        }
-        if (String(seconds).length < 2) {
-            seconds = addZero(seconds);
-        }
+        lengthCheck();
 
         displayTime();
     } else {
         document.querySelector('.timer-indicator').setAttribute('class', 'timer-indicator');
-        hourInp.value = '';
-        minInp.value = '';
-        secInp.value = '';
-        clearInterval(timerId);
-        startBtn.disabled = false;
-        hourInp.disabled = false;
-        minInp.disabled = false;
-        secInp.disabled = false;
-        pauseBtn.disabled = true;
-        resetBtn.disabled = true;
+        preparingToTurnOffTheTimer();
         audioOff.play();
     }
+}
+
+function displayTime() {
+    hourInp.value = hours;
+    minInp.value = minutes;
+    secInp.value = seconds;
+}
+
+function lengthCheck() {
+    if (String(hours).length < 2) {
+        hours = addZero(hours);
+    }
+    if (String(minutes).length < 2) {
+        minutes = addZero(minutes);
+    }
+    if (String(seconds).length < 2) {
+        seconds = addZero(seconds);
+    }
+}
+
+function addZero(value) {
+    return '0' + value;
+}
+
+function preparingToTurnOffTheTimer() {
+    clearingFields();
+    clearInterval(timerId);
+    startBtn.disabled = false;
+    hourInp.disabled = false;
+    minInp.disabled = false;
+    secInp.disabled = false;
+    pauseBtn.disabled = true;
+    resetBtn.disabled = true;
+}
+
+function clearingFields() {
+    hourInp.value = '';
+    minInp.value = '';
+    secInp.value = '';
 }
