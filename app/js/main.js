@@ -30,7 +30,7 @@ secInp.oninput = function () {
     this.value = this.value.substring(0, 2);
 }
 
-if(JSON.parse(localStorage.getItem('dark-theme')) === true) {
+if (JSON.parse(localStorage.getItem('dark-theme')) === true) {
     document.querySelector('.main').classList.add('theme-dark');
 }
 
@@ -107,10 +107,10 @@ startBtn.addEventListener('click', (event) => {
     timerId = setInterval(timer, 1000);
 });
 pauseBtn.addEventListener('click', (event) => {
-    document.querySelector('.timer-indicator').setAttribute('class', 'timer-indicator timer-indicator--pause');
+    clearInterval(timerId);
 
     if (isPause) {
-        clearInterval(timerId);
+        document.querySelector('.timer-indicator').setAttribute('class', 'timer-indicator timer-indicator--pause');
         isPause = false;
     } else {
         timerId = setInterval(timer, 1000);
@@ -146,6 +146,7 @@ function addZero(value) {
 }
 
 function timer() {
+    console.log(timerId);
     total_time -= 1;
     if (total_time > 0) {
         let temp = total_time
