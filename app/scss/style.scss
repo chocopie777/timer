@@ -1,6 +1,8 @@
 @import "../css/normalize";
 @import "../css/reset";
 @import "../scss/fonts";
+@import "../../node_modules/noty/src/noty";
+@import "../../node_modules/noty/src/themes/metroui";
 
 .timer__inner {
   padding: 20px 20px 50px;
@@ -10,6 +12,13 @@
 .main {
   height: 100vh;
   position: relative;
+
+  &__inner {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+  }
 }
 
 .timer {
@@ -27,6 +36,14 @@
   height: 8px;
   border-radius: 0 0 4px 4px;
   background: #FD6259;
+
+  &--pause {
+    background: #E9CA29;
+  }
+
+  &--start {
+    background: #03AE85
+  }
 }
 
 .timer__title {
@@ -68,6 +85,7 @@
 }
 
 .timer__inp {
+  text-align: center;
   border-radius: 4px;
   border: 1px solid #DBDBDB;
   background: #FFF;
@@ -80,6 +98,11 @@
   font-weight: 400;
   line-height: normal;
   padding: 0 27px;
+
+  &::placeholder {
+    color: #000;
+    opacity: .7;
+  }
 }
 
 .timer__footer {
@@ -110,6 +133,11 @@
     border: 1px solid #03AE85;
     background: #03AE85;
     color: #FFF;
+
+    &:disabled {
+      border: 1px solid #03725a;
+      background: #03725a;
+    }
   }
 
   &--default {
@@ -146,7 +174,7 @@
   background: #E9E9E9;
 }
 
-.head-btns {
+.btns {
   position: absolute;
   top: 22px;
   right: 36px;
@@ -169,16 +197,25 @@
   & .timer__btn--primary, .timer__btn--default, .timer__btn--danger {
     color: #FFF;
   }
+
   & .timer__title {
     color: #FFF;
   }
+
   & .timer__inp {
     background: #011C2C;
     color: #FFF;
+
+    &::placeholder {
+      color: #FFF;
+      opacity: .7;
+    }
   }
+
   & .theme-btn, .git-hub-link {
     background: #00273F;
   }
+
   & .git-hub-link path, .theme-btn path {
     stroke: #DCF2FF;
   }
